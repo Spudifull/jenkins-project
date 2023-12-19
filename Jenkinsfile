@@ -37,9 +37,8 @@ pipeline {
             }
             steps {
                 sh '''
-                rm -rf docs || true
                 sphinx-quickstart -q -p "My Project" -a "Author Name" docs
-                sphinx-build -b html docs/source docs/build
+                make html
                 '''
                 archiveArtifacts artifacts: 'docs/build/**/*.html', allowEmptyArchive: true
             }

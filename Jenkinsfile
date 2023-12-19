@@ -5,6 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'cytopia/pylint'
+                    args '--entrypoint=""'
                 }
             }
             steps {

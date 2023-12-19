@@ -38,7 +38,7 @@ pipeline {
             }
             steps {
                 sh '''
-                sudo pip install sphinx
+                pip install sphinx
                 sphinx-quickstart docs -q -p "My Project" -a "Author Name"
                 sphinx-build -b html docs/source docs/build
                 '''

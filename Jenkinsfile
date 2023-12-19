@@ -29,6 +29,22 @@ pipeline {
             }
         }
 
+        stage('Generate Documentation') {
+            agent {
+                docker {
+                    image 'python:3.12.1-alpine3.19' // Используйте образ с установленным Sphinx
+                }
+            }
+            steps {
+                sh '''
+                pip install sphinx
+                sphinx-quickstart docs -q -p "My Project" -a "Author Name"
+                sphinx-build -b html docs/source docs/build
+                '''
+                archiveArtifacts artifacts: 'docs/build/**/*.html', allowEmptyArchive: true
+            }
+        }
+
         stage('Deliver') {
             agent any
             environment {

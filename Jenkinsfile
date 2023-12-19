@@ -32,7 +32,8 @@ pipeline {
         stage('Generate Documentation') {
             agent {
                 docker {
-                    image 'python:3.12.1-alpine3.19' // Используйте образ с установленным Sphinx
+                    image 'python:3.12.1-alpine3.19' 
+                    args '-u root'
                 }
             }
             steps {

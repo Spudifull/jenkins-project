@@ -1,6 +1,17 @@
 pipeline {
     agent none 
     stages {
+        stage('Lint') {
+            agent {
+                docker {
+                    image 'cytopia/pylint'
+                }
+            }
+            steps {
+                sh 'pylint sources/*.py'
+            }
+        }
+        
         stage('Build') { 
             agent {
                 docker {

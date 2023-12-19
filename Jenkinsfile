@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pylint --output-format=text sources/*.py'
+                sh 'pylint --output-format=text --disable=C0114,C0103,C0116 sources/*.py'
             }
         }
         

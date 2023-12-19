@@ -32,14 +32,12 @@ pipeline {
         stage('Generate Documentation') {
             agent {
                 docker {
-                    image 'python:3.12.1-alpine3.19' 
-                    args '-u root'
+                    image 'sphinxdoc/sphinx' 
                 }
             }
             steps {
                 sh '''
-                pip install sphinx
-                sphinx-quickstart docs -q -p "My Project" -a "Author Name"
+                sphinx-quickstart -q -p "My Project" -a "Author Name" docs
                 sphinx-build -b html docs/source docs/build
                 '''
                 archiveArtifacts artifacts: 'docs/build/**/*.html', allowEmptyArchive: true

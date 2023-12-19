@@ -9,7 +9,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'pylint sources/*.py'
+                sh 'pylint --output-format=text sources/*.py'
             }
         }
         
